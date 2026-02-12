@@ -20,7 +20,7 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
 
 
 ### **Contents**
-- `helper-scripts
+- `helper-scripts`
 	- read quality control
 	- read statistics
 	- assembly statistics
@@ -31,7 +31,7 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
 	- steps for rerunning after curation
 
 - `Verkko-Fillet`
-	- modified to run on **[SCINet's HPC Ceres](https://scinet.usda.gov/)
+	- modified to run on **[SCINet's HPC Ceres](https://scinet.usda.gov/)**
 	- additional scripts extend file formatting for easier curation 
 
 - `Assembly comparisons`
