@@ -1,3 +1,6 @@
+#created by Sarah E. Fumagalli
+
+
 ## ----------------------------------------------------------------------------------------------
 ## This script grabs the translation, T2T contigs, and T2T scaffold files for each assembly. 
 ##

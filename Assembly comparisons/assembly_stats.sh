@@ -1,3 +1,5 @@
+# created by Sarah E. Fumagalli
+
 #!/bin/bash -l
 
 #SBATCH --job-name=assembly_stats
@@ -8,7 +10,7 @@
 #SBATCH --qos=agil
 #SBATCH --time=3-00:00:00
 #SBATCH --account=cattle_genome_assemblies
-#SBATCH --chdir=/90daydata/ruminant_t2t/Pronghorn/assembly/
+#SBATCH --chdir=/90daydata/ruminant_t2t/Gyr/assembly/
 #SBATCH --output=assembly_stats__%j.std
 #SBATCH --error=assembly_stats__%j.err
 
@@ -34,14 +36,15 @@
 
 date
 
-reference="/project/ruminant_t2t/existing_NCBI_references/Pronghorn/Pronghorn_hifiasmONT_primaryNC.chr.fasta"
-assemblies=("verkko2.2.1_hifi-duplex_UA4_hic" "verkko2.2.1_hifi-duplex_UA8_hic" "verkko2.2.1_hifi-duplex_hic" "verkko2.2.1_hifi_hic" "verkko2.2.1_ontEC_hic")
+reference="ARS-UCD2.0_chr.fasta"
+assemblies=("verkko2.2.1_hifi_hic" "verkko2.2.1_hifi_trio" "verkko2.2.1_hifi-q36_hic" "verkko2.2.1_hifi-q36_porec" "verkko2.2.1_hifi-q36_trio" "verkko2.2_hifi-duplex_hic" "verkko2.2_hifi-duplex_porec" "verkko2.2.1_hifi-duplex_trio" "verkko2.2.1_hifi-duplex_tporec" "verkko2.2.1_hifi-herro_hic" "verkko2.2.1_hifi-herro_porec" "verkko2.2.1_hifi-herro_trio" "verkko2.2_duplex_hic" "verkko2.2.1_duplex_porec" "verkko2.2.1_duplex_trio" "verkko2.2.1_herro_hic" "verkko2.2.1_herro_porec" "verkko2.2.1_herro_trio")
 
 #column names for tables
-filenames=("HiFi-Duplex UA4 Hi-C Hap1" "HiFi-Duplex UA4 Hi-C Hap2" "HiFi-Duplex UA8 Hi-C Hap1" "HiFi-Duplex UA8 Hi-C Hap2" "HiFi-Duplex Hi-C Hap1" "HiFi-Duplex Hi-C Hap2" "HiFi Hi-C Hap1" "HiFi Hi-C Hap2" "ontEC Hi-C Hap1" "ontEC Hi-C Hap2")
+filenames=("HiFi Hi-C Hap1" "HiFi Hi-C Hap2" "HiFi Trio Hap1" "HiFi Trio Hap2" "HiFi-q36 Hi-C Hap1" "HiFi-q36 Hi-C Hap2" "HiFi-q36 Pore-C Hap1" "HiFi-q36 Pore-C Hap2" "HiFi-q36 Trio Hap1" "HiFi-q36 Trio Hap2" "HiFi-Duplex Hi-C Hap1" "HiFi-Duplex Hi-C Hap2" "HiFi-Duplex Pore-C Hap1" "HiFi-Duplex Pore-C Hap2" "HiFi-Duplex Trio Hap1" "HiFi-Duplex Trio Hap2" "HiFi-Duplex TPore-C Hap1" "HiFi-Duplex TPore-C Hap2" "HiFi-Herro Hi-C Hap1" "HiFi-Herro Hi-C Hap2" "HiFi-Herro Pore-C Hap1" "HiFi-Herro Pore-C Hap2" "HiFi-Herro Trio Hap1" "HiFi-Herro Trio Hap2" "Duplex Hi-C Hap1" "Duplex Hi-C Hap2" "Duplex Pore-C Hap1" "Duplex Pore-C Hap2" "Duplex Trio Hap1" "Duplex Trio Hap2" "Herro Hi-C Hap1" "Herro Hi-C Hap2" "Herro Pore-C Hap1" "Herro Pore-C Hap2" "Herro Trio Hap1" "Herro Trio Hap2")
 
-#table file name
-tsv_gfa="Pronghorn_hap_gfastats"
+
+#table file names
+tsv_gfa="Gyr_hap_gfastats"
 
 
 
@@ -56,8 +59,8 @@ do
 	micromamba deactivate
 
 	echo "gfastats to find gaps"
-	/project/cattle_genome_assemblies/packages/gfastats/gfastats --out-coord g -f $assembly/assembly.haplotype1.fasta > $assembly/assembly.haplotype1.fasta.gaps
-	/project/cattle_genome_assemblies/packages/gfastats/gfastats --out-coord g -f $assembly/assembly.haplotype2.fasta > $assembly/assembly.haplotype2.fasta.gaps
+	/gfastats/gfastats --out-coord g -f $assembly/assembly.haplotype1.fasta > $assembly/assembly.haplotype1.fasta.gaps
+	/gfastats/gfastats --out-coord g -f $assembly/assembly.haplotype2.fasta > $assembly/assembly.haplotype2.fasta.gaps
 
 	echo "minimap2 to align verkko assembly to reference"
 	micromamba activate minimap2
@@ -66,11 +69,11 @@ do
 	micromamba deactivate
 
 	echo "gfastats for assembly stats"
-	/project/cattle_genome_assemblies/packages/gfastats/gfastats $assembly/assembly.haplotype1.fasta > $assembly/assembly_hap1_gfa.stats
-	/project/cattle_genome_assemblies/packages/gfastats/gfastats $assembly/assembly.haplotype2.fasta > $assembly/assembly_hap2_gfa.stats
+	/gfastats/gfastats $assembly/assembly.haplotype1.fasta > $assembly/assembly_hap1_gfa.stats
+	/gfastats/gfastats $assembly/assembly.haplotype2.fasta > $assembly/assembly_hap2_gfa.stats
 
 	echo "gfastats for assembly graph"
-	/project/cattle_genome_assemblies/packages/gfastats/gfastats --discover-paths -f $assembly/assembly.homopolymer-compressed.gfa > $assembly/assembly.homopolymer-compressed_gfa.stats
+	/gfastats/gfastats --discover-paths -f $assembly/assembly.homopolymer-compressed.gfa > $assembly/assembly.homopolymer-compressed_gfa.stats
 
 done
 
@@ -78,7 +81,7 @@ done
 micromamba activate pyfigures
 
 echo "join gfastats"
-python3 /project/cattle_genome_assemblies/config_files_scripts/Sarah_scripts/join_gfastats.py \
+python3 assembly_stats.py \
         --assemblies "${assemblies[@]}" \
         --filenames "${filenames[@]}" \
         --tsv_gfa $tsv_gfa

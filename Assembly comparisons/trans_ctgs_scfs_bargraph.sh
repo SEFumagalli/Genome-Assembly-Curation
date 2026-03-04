@@ -1,3 +1,7 @@
+#created by Sarah E. Fumagalli
+
+## This script produces three bar graphs - haplotype 1, haplotype 2, and total assembly - with the counts of T2T contigs and scaffolds
+
 #!/bin/bash -l
 
 #SBATCH --job-name=trans_ctgs_scfs_bargraph

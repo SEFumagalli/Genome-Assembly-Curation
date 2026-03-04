@@ -1,3 +1,5 @@
+# created by Sarah E. Fumagalli
+
 ## -------------------------------------------------------------------------------
 ## This file combines rDNA.fasta.fai and scfmap -> tsv file
 ## This file also creates a list of the utigs listed in tsv file,

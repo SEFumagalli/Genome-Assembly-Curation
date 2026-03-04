@@ -1,3 +1,7 @@
+#created by Sarah E. Fumagalli
+
+## There is a more comprehensive version of the script incorportated into run_verkko_fillet.sh
+
 #!/bin/bash -l
 
 #SBATCH --job-name=rDNA_id_scfmap_smash

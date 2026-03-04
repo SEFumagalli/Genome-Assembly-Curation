@@ -1,3 +1,19 @@
+#created by Sarah E. Fumagalli
+
+## This script grabs the T2T contigs/scaffold heatmaps the are output by run_verkko_fillet.sh (verkko-fillet) and concatenates them into a single file.
+## This script grabs the translation_summary files from the verkko-fillet output files and combines them into a single table.
+
+
+#Example run on command line:
+#micromamba activate pyfigures
+
+#python3 join_VF_pngs_tables.py \
+#        --assemblies verkko2.2.1_hifi-ontEC-UA12_omniC_verkko_fillet verkko2.2.1_hifi-ontEC-UA5_omniC_verkko_fillet verkko2.2.1_hifi_omniC_verkko_fillet \
+#        --main_dir /90daydata/ruminant_t2t/Gyr/assembly/
+
+
+
+
 from PIL import Image
 import argparse
 import os
