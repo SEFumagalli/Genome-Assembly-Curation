@@ -20,20 +20,35 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
 
 
 ### **Contents**
-- `helper-scripts`
-	- read quality control
-	- read statistics
-	- assembly statistics
-	- graphics
-
-- `Verkko`
-	- steps for running each assembly type
-	- steps for rerunning after curation
-
-- `Verkko-Fillet`
-	- modified to run on **[SCINet's HPC Ceres](https://scinet.usda.gov/)**
-	- additional scripts extend file formatting for easier curation 
-
 - `Assembly comparisons`
 	- between Gyr Verkko assemblies
 	- between current Gyr NCBI reference and best Verkko assembly
+	- assembly statistics script
+	- T2T contigs/scaffold bargraph script
+
+- `Curation`
+	- detailed steps on curation of gaps, rDNA, and telomeres of the Verkko assembly (HiFi-Duplex Trio Pore-C) and an alternate assembly (HiFi-Herro Pore-C)
+
+- `Example Files`
+	- files mentioned in scripts - for context
+
+- `helper-scripts`
+	- verkko-fillet_bypass
+		- scripts that output similar results to Verkko-Fillet
+	- path translation between Bandage and Verkko scripts
+	- read statistics script
+	- gap fixes conversion for Verkko scripts
+	- rDNA conversion from morph to patch for Verkko script
+	- Conkord script - counts copy number of genomic features
+
+- `Verkko`
+	- GraphAligner scripts
+
+- `Verkko-Fillet`
+	- verkko-fillet scripts
+		- README - specifically for running Verkko-Fillet from a python script; includes several precursor steps
+		- chromosome translation between assembly and reference script
+		- notes including modifications to Verkko-Fillet scripts; including additional formatting and creation of tables, files, and graphics for easy curation
+	- T2T contig/scaffold heatmaps - all assemblies concatenated into a single file
+	- rDNA information saved as table and string for easy Bandage usage (this is now included in run_verkko_fillet.sh)
+
